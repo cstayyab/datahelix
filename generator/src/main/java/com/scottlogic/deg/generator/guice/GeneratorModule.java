@@ -30,6 +30,7 @@ import com.scottlogic.deg.generator.generation.databags.RowSpecDataBagGenerator;
 import com.scottlogic.deg.generator.inputs.validation.ProfileValidator;
 import com.scottlogic.deg.generator.utils.JavaUtilRandomNumberGenerator;
 import com.scottlogic.deg.generator.walker.DecisionTreeWalker;
+import com.scottlogic.deg.generator.walker.RowSpecGenerator;
 import com.scottlogic.deg.generator.walker.reductive.IterationVisualiser;
 
 import java.io.PrintWriter;
@@ -60,6 +61,7 @@ public class GeneratorModule extends AbstractModule {
         bind(ReductiveDataGeneratorMonitor.class).toProvider(MonitorProvider.class).in(Singleton.class);
         bind(IterationVisualiser.class).toProvider(IterationVisualiserProvider.class);
         bind(CombinationStrategy.class).toProvider(CombinationStrategyProvider.class);
+        bind(RowSpecGenerator.class).toProvider(RowSpecGeneratorProvider.class);
 
         // bind config directly
         bind(DataGenerationType.class).toInstance(generationConfigSource.getGenerationType());

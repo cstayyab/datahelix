@@ -37,27 +37,22 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class CartesianProductDecisionTreeWalker implements DecisionTreeWalker {
+public class CartesianProductRowSpecGenerator implements RowSpecGenerator {
     private final ConstraintReducer constraintReducer;
     private final RowSpecMerger rowSpecMerger;
-    private final RowSpecDataBagGenerator dataBagSourceFactory;
 
     @Inject
-    public CartesianProductDecisionTreeWalker(
+    public CartesianProductRowSpecGenerator(
         ConstraintReducer constraintReducer,
-        RowSpecMerger rowSpecMerger, RowSpecDataBagGenerator dataBagSourceFactory) {
+        RowSpecMerger rowSpecMerger) {
         this.constraintReducer = constraintReducer;
         this.rowSpecMerger = rowSpecMerger;
-        this.dataBagSourceFactory = dataBagSourceFactory;
     }
 
-    public Stream<DataBag> walk(DecisionTree tree) {
-        final DecisionTreeWalkerHelper helper = new DecisionTreeWalkerHelper(tree.getFields());
-        Stream<RowSpec> rowSpecs = helper.walk(tree.getRootNode());
-
-        return FlatMappingSpliterator.flatMap(
-            rowSpecs,
-            dataBagSourceFactory::createDataBags);
+    @Override
+    public Stream<RowSpec> generateRowSpecs(DecisionTree tree) {
+        return new DecisionTreeWalkerHelper(tree.getFields())
+            .walk(tree.getRootNode());
     }
 
     private class DecisionTreeWalkerHelper {

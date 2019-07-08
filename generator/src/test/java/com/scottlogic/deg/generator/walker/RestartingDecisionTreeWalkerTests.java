@@ -34,9 +34,9 @@ import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.*;
 
-class RandomReductiveDecisionTreeWalkerTests {
+class RestartingDecisionTreeWalkerTests {
     private DecisionTree tree;
-    private RandomReductiveDecisionTreeWalker walker;
+    private RestartingDecisionTreeWalker walker;
     private ReductiveDecisionTreeWalker underlyingWalker;
 
     @BeforeEach
@@ -47,7 +47,7 @@ class RandomReductiveDecisionTreeWalkerTests {
         );
 
         underlyingWalker = mock(ReductiveDecisionTreeWalker.class);
-        walker = new RandomReductiveDecisionTreeWalker(underlyingWalker);
+        walker = new RestartingDecisionTreeWalker(underlyingWalker);
     }
 
     /**

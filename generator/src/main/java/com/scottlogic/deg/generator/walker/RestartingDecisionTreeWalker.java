@@ -24,11 +24,10 @@ import com.scottlogic.deg.generator.generation.databags.DataBag;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class RandomReductiveDecisionTreeWalker implements DecisionTreeWalker {
-    private final ReductiveDecisionTreeWalker underlyingWalker;
+public class RestartingDecisionTreeWalker implements DecisionTreeWalker {
+    private final DecisionTreeWalker underlyingWalker;
 
-    @Inject
-    RandomReductiveDecisionTreeWalker(ReductiveDecisionTreeWalker underlyingWalker) {
+    public RestartingDecisionTreeWalker(DecisionTreeWalker underlyingWalker) {
         this.underlyingWalker = underlyingWalker;
     }
 
