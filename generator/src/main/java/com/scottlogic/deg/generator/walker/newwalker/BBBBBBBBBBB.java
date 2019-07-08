@@ -23,6 +23,7 @@ public class BBBBBBBBBBB implements RowSpecGenerator {
     @Override
     public Stream<RowSpec> generateRowSpecs(DecisionTree tree) {
         ConstraintNode constraintNode = eeee.reduceToRowNode(tree.rootNode);
+        if (constraintNode == null) return generateRowSpecs(tree);
 
         return Stream.of(getRowspecs(tree.fields, constraintNode));
     }

@@ -47,7 +47,7 @@ public class EEEE {
         Merged<ConstraintNode> prunedRoot = reductiveTreePruner.pruneConstraintNode(newRoot, pulledUpFields);
 
         if (prunedRoot.isContradictory()){
-            //todo
+            return null; //todo maybe improve
         }
 
         return reduceToRowNode(prunedRoot.get());
