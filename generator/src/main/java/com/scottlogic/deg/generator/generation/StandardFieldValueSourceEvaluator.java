@@ -17,6 +17,7 @@
 package com.scottlogic.deg.generator.generation;
 
 import com.scottlogic.deg.common.profile.constraints.atomic.IsOfTypeConstraint;
+import com.scottlogic.deg.common.util.Defaults;
 import com.scottlogic.deg.generator.fieldspecs.FieldSpec;
 import com.scottlogic.deg.generator.generation.fieldvaluesources.*;
 import com.scottlogic.deg.generator.generation.fieldvaluesources.datetime.DateTimeFieldValueSource;
@@ -103,7 +104,8 @@ public class StandardFieldValueSourceEvaluator implements FieldValueSourceEvalua
         StringRestrictions stringRestrictions = fieldSpec.getStringRestrictions();
 
         if (stringRestrictions == null) {
-            return new CannedValuesFieldValueSource(Collections.emptyList());
+            return new RegexStringGenerator("^.{0,1000}$", true)
+                .asFieldValueSource();
         }
 
         Set<Object> blacklist = getBlacklist(fieldSpec);
