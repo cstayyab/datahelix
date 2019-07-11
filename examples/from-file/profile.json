@@ -1,23 +1,30 @@
 {
   "schemaVersion": "0.1",
   "fields": [
-    {"name": "name"}
+    {
+      "name": "name"
+    }
   ],
   "rules": [
     {
       "rule": "notnull",
       "constraints": [
-        { "allOf":
-          [
-            { "not": { "field": "name", "is": "null" } }
-          ]
+        {
+          "not": {
+            "field": "name",
+            "is": "null"
+          }
         }
       ]
     },
     {
       "rule": "name",
       "constraints": [
-        {"field": "name", "is": "setFromFile", "value": "greek.csv"}
+        {
+          "field": "name",
+          "is": "setFromFile",
+          "value": "greek.csv"
+        }
       ]
     }
   ]
